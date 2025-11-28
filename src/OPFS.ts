@@ -68,7 +68,7 @@ export class OPFS
             throw new Error("File path is not valid");
         }
         const dir = await this._getLastDirectoryHandle(segments, options?.create);
-        return await dir.getFileHandle(segments[segments.length - 1], { create: options?.create });
+        return dir.getFileHandle(segments[segments.length - 1], { create: options?.create });
     }
 
     /**
@@ -87,7 +87,7 @@ export class OPFS
             return this._root;
         }
         const dir = await this._getLastDirectoryHandle(segments, options?.create);
-        return await dir.getDirectoryHandle(segments[segments.length - 1], { create: options?.create });
+        return dir.getDirectoryHandle(segments[segments.length - 1], { create: options?.create });
     }
 
     /**
@@ -129,7 +129,7 @@ export class OPFS
     {
         const handle = await this.getFileHandle(path);
         const file = await handle.getFile();
-        return await file.arrayBuffer();
+        return file.arrayBuffer();
     }
 
     /**
