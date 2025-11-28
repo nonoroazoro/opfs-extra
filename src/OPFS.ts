@@ -11,20 +11,27 @@ export class OPFS
     }
 
     /**
-     * Creates or gets the singleton instance of {@link OPFS}.
+     * Opens access to the Origin Private File System.
      *
-     * @throws {Error} If OPFS root directory is not found or OPFS is not supported in your browser.
+     * @throws {Error} If Origin Private File System is not supported.
      */
-    static async create(): Promise<OPFS>
+    static async open(): Promise<OPFS>
     {
         if (!OPFS._instance)
         {
-            const root = await navigator.storage.getDirectory();
-            if (!root)
+            try
             {
-                throw new Error("OPFS root directory is not found");
+                const root = await navigator.storage.getDirectory();
+                if (!root)
+                {
+                    throw new Error();
+                }
+                OPFS._instance = new OPFS(root);
             }
-            OPFS._instance = new OPFS(root);
+            catch
+            {
+                throw new Error("Origin Private File System is not supported.");
+            }
         }
         return OPFS._instance;
     }
