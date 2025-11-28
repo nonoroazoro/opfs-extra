@@ -457,7 +457,7 @@ export class OPFS
     /**
      * Converts a path into segments.
      *
-     * Note: OPFS path is always relative to the root directory.
+     * Note: Path is always relative to the root directory.
      *
      * Examples:
      * - "/foo/bar/baz.txt" -> ["foo", "bar", "baz.txt"] -> root/foo/bar/baz.txt
