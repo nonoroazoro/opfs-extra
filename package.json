@@ -1,0 +1,63 @@
+{
+    "name": "opfs-extra",
+    "version": "1.0.0",
+    "description": "opfs-extra brings the user-friendly API to OPFS, just like fs-extra.",
+    "license": "MIT",
+    "main": "dist/lib/index.js",
+    "module": "dist/es/index.js",
+    "types": "dist/types/index.d.ts",
+    "author": {
+        "email": "xiaochao.k@gmail.com",
+        "name": "nonoroazoro",
+        "url": "https://github.com/nonoroazoro"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nonoroazoro/opfs-extra"
+    },
+    "keywords": [
+        "opfs",
+        "fs",
+        "file",
+        "file system",
+        "json",
+        "read",
+        "write"
+    ],
+    "scripts": {
+        "prepare": "husky",
+        "dev": "vite",
+        "clean": "rimraf dist test-results",
+        "prebuild": "npm run clean",
+        "build": "npm run build:es && npm run build:lib && npm run build:types",
+        "build:es": "tsc --project ./tsconfig.es.json",
+        "build:lib": "tsc --project ./tsconfig.lib.json",
+        "build:types": "tsc --project ./tsconfig.types.json",
+        "test": "playwright test",
+        "test:watch": "playwright test --ui"
+    },
+    "lint-staged": {
+        "{src,tests}/**/*.ts": [
+            "dprint fmt",
+            "eslint"
+        ]
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.57.0",
+        "@types/node": "^24.10.1",
+        "@typescript-eslint/eslint-plugin": "^8.48.0",
+        "@typescript-eslint/parser": "^8.48.0",
+        "dprint": "^0.50.2",
+        "eslint": "^9.39.1",
+        "eslint-config-zoro": "^7.1.16",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.7",
+        "rimraf": "^6.1.2",
+        "ts-loader": "^9.5.4",
+        "typescript": "^5.9.3",
+        "vite": "^7.2.4"
+    },
+    "files": [
+        "dist"
+    ]
+}
