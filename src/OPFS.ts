@@ -13,25 +13,14 @@ export class OPFS
     /**
      * Opens access to the Origin Private File System.
      *
-     * @throws {Error} If Origin Private File System is not supported.
+     * @throws
      */
     static async open(): Promise<OPFS>
     {
         if (!OPFS._instance)
         {
-            try
-            {
-                const root = await navigator.storage.getDirectory();
-                if (!root)
-                {
-                    throw new Error();
-                }
-                OPFS._instance = new OPFS(root);
-            }
-            catch
-            {
-                throw new Error("Origin Private File System is not supported.");
-            }
+            const root = await navigator.storage.getDirectory();
+            OPFS._instance = new OPFS(root);
         }
         return OPFS._instance;
     }
