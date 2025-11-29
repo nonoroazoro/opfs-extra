@@ -4,8 +4,5 @@
         "**/dist": true,
         "**/pnpm-lock.yaml": true
     },
-    "files.exclude": {
-        "**/test-results": true
-    },
     "typescript.tsdk": "node_modules/typescript/lib"
 }

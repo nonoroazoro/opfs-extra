@@ -38,7 +38,7 @@
     ],
     "scripts": {
         "prepare": "husky",
-        "clean": "rimraf dist test-results coverage",
+        "clean": "rimraf dist coverage",
         "prebuild": "npm run test && npm run clean",
         "build": "npm run build:es && npm run build:lib && npm run build:types",
         "build:es": "tsc --project ./tsconfig.es.json",

@@ -7,4 +7,3 @@ node_modules
 # Project specific stuff
 coverage
 dist
-test-results
