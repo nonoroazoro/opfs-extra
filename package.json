@@ -3,17 +3,29 @@
     "version": "1.0.0",
     "description": "opfs-extra brings the user-friendly API to OPFS, just like fs-extra.",
     "license": "MIT",
-    "main": "dist/lib/index.js",
-    "module": "dist/es/index.js",
-    "types": "dist/types/index.d.ts",
+    "main": "./dist/lib/index.js",
+    "module": "./dist/es/index.js",
+    "types": "./dist/types/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/es/index.js",
+            "require": "./dist/lib/index.js"
+        }
+    },
     "author": {
         "email": "xiaochao.k@gmail.com",
         "name": "nonoroazoro",
         "url": "https://github.com/nonoroazoro"
     },
+    "homepage": "https://github.com/nonoroazoro/opfs-extra",
     "repository": {
         "type": "git",
         "url": "https://github.com/nonoroazoro/opfs-extra"
+    },
+    "bugs": {
+        "email": "xiaochao.k@gmail.com",
+        "url": "https://github.com/nonoroazoro/opfs-extra/issues"
     },
     "keywords": [
         "opfs",
@@ -28,7 +40,7 @@
         "prepare": "husky",
         "dev": "vite",
         "clean": "rimraf dist test-results coverage",
-        "prebuild": "npm run clean",
+        "prebuild": "npm run test && npm run clean",
         "build": "npm run build:es && npm run build:lib && npm run build:types",
         "build:es": "tsc --project ./tsconfig.es.json",
         "build:lib": "tsc --project ./tsconfig.lib.json",
@@ -60,6 +72,9 @@
         "vitest": "^4.0.14"
     },
     "files": [
-        "dist"
+        "docs",
+        "dist",
+        "README.md",
+        "LICENSE"
     ]
 }
