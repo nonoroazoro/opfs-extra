@@ -27,14 +27,15 @@
     "scripts": {
         "prepare": "husky",
         "dev": "vite",
-        "clean": "rimraf dist test-results",
+        "clean": "rimraf dist test-results coverage",
         "prebuild": "npm run clean",
         "build": "npm run build:es && npm run build:lib && npm run build:types",
         "build:es": "tsc --project ./tsconfig.es.json",
         "build:lib": "tsc --project ./tsconfig.lib.json",
         "build:types": "tsc --project ./tsconfig.types.json",
-        "test": "playwright test",
-        "test:watch": "playwright test --ui"
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:cov": "vitest run --coverage"
     },
     "lint-staged": {
         "{src,tests}/**/*.ts": [
@@ -43,10 +44,11 @@
         ]
     },
     "devDependencies": {
-        "@playwright/test": "^1.57.0",
         "@types/node": "^24.10.1",
         "@typescript-eslint/eslint-plugin": "^8.48.0",
         "@typescript-eslint/parser": "^8.48.0",
+        "@vitest/browser-playwright": "^4.0.14",
+        "@vitest/coverage-v8": "^4.0.14",
         "dprint": "^0.50.2",
         "eslint": "^9.39.1",
         "eslint-config-zoro": "^7.1.16",
@@ -55,7 +57,7 @@
         "rimraf": "^6.1.2",
         "ts-loader": "^9.5.4",
         "typescript": "^5.9.3",
-        "vite": "^7.2.4"
+        "vitest": "^4.0.14"
     },
     "files": [
         "dist"
