@@ -23,7 +23,7 @@ import { OPFS } from "opfs-extra";
 // Initialization
 const opfs = await OPFS.open();
 
-// Directory: Create
+// Directory Creating
 await opfs.mkdir("/data");
 
 // File Writing
