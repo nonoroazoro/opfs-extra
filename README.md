@@ -2,10 +2,10 @@
 <p align="center"><b>opfs-extra</b> brings the user-friendly API to <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system">OPFS</a>, just like <a href="https://github.com/jprichardson/node-fs-extra">fs-extra</a></p>
 <p align="center">
     <a href="https://github.com/nonoroazoro/opfs-extra/blob/master/LICENSE">
-        <img src="https://img.shields.io/npm/l/opfs-extra.svg" alt="GitHub License" />
+        <img src="https://img.shields.io/npm/l/opfs-extra" alt="NPM License" />
     </a>
     <a href="https://www.npmjs.com/package/opfs-extra">
-        <img src="https://img.shields.io/npm/dw/opfs-extra.svg" alt="NPM Downloads" />
+        <img src="https://img.shields.io/npm/dw/opfs-extra" alt="NPM Downloads" />
     </a>
 </p>
 
