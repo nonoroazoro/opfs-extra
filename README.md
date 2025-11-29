@@ -52,7 +52,7 @@ await opfs.remove("/data");
 
 ### Storage
 
-- **`root`** - Gets the root directory handle
+- **root** - Gets the root directory handle
 - **[estimate()](docs/estimate.md)** - Estimates storage usage and quota
 
 ### Handles
