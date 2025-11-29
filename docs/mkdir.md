@@ -2,9 +2,16 @@
 
 Creates a directory, _creates parent directories automatically if needed._
 
-## Parameters
+## Signature
 
-- `path` `<string>`: Directory path relative to the root directory
+```typescript
+/**
+ * @param {string} path Directory path relative to the root directory.
+ *
+ * @throws
+ */
+mkdir(path: string): Promise<void>
+```
 
 ## Example
 

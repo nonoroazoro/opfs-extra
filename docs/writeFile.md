@@ -2,11 +2,22 @@
 
 Writes data to a file, _creates file and parent directories automatically if needed._
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `data` `<FileSystemWriteChunkType>`: Data to write
-- `options` `<FileSystemCreateWritableOptions>`: _[Optional]_ Options for writing file
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {FileSystemWriteChunkType} data Data to write.
+ * @param {FileSystemCreateWritableOptions} [options] Options for writing file.
+ *
+ * @throws
+ */
+writeFile(
+  path: string,
+  data: FileSystemWriteChunkType,
+  options?: FileSystemCreateWritableOptions
+): Promise<void>
+```
 
 ## Example
 

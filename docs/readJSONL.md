@@ -2,14 +2,17 @@
 
 Reads a file as JSON lines (JSONL format).
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `encoding` `<string>`: _[Optional]_ Text encoding
-
-## Returns
-
-- `<Promise<T[]>>`: Array of parsed JSON objects
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {string} [encoding] Text encoding.
+ *
+ * @throws
+ */
+readJSONL<T extends object>(path: string, encoding?: string): Promise<T[]>
+```
 
 ## Example
 

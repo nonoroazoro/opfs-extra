@@ -2,14 +2,20 @@
 
 Gets a directory handle.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: Directory path relative to the root directory
-- `options` `<FileSystemGetDirectoryOptions>`: _[Optional]_ Options for retrieving the directory handle
-
-## Returns
-
-- `<Promise<FileSystemDirectoryHandle>>`
+```typescript
+/**
+ * @param {string} path Directory path relative to the root directory.
+ * @param {FileSystemGetDirectoryOptions} [options] Options for retrieving the directory handle.
+ *
+ * @throws
+ */
+getDirectoryHandle(
+  path: string,
+  options?: FileSystemGetDirectoryOptions
+): Promise<FileSystemDirectoryHandle>
+```
 
 ## Example
 

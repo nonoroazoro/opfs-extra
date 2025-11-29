@@ -2,11 +2,22 @@
 
 Writes JSON data to a file, _creates file and parent directories automatically if needed._
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `data` `<unknown>`: Data to write
-- `options` `<object>`: _[Optional]_ Options for writing file
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {unknown} data Data to write.
+ * @param {({ pretty?: boolean; } & FileSystemCreateWritableOptions)} [options] Options for writing file.
+ *
+ * @throws
+ */
+writeJSON(
+  path: string,
+  data: unknown,
+  options?: { pretty?: boolean } & FileSystemCreateWritableOptions
+): Promise<void>
+```
 
 ## Example
 

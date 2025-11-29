@@ -2,13 +2,16 @@
 
 Reads a file as an ArrayBuffer containing binary data.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-
-## Returns
-
-- `<Promise<ArrayBuffer>>`
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ *
+ * @throws
+ */
+readBinary(path: string): Promise<ArrayBuffer>
+```
 
 ## Example
 

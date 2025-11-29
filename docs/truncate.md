@@ -2,10 +2,17 @@
 
 Truncates a file to a specified size, _creates file and parent directories automatically if needed._
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `size` `<number>`: Number of bytes to resize to
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {number} size A number specifying the number of bytes to resize to.
+ *
+ * @throws
+ */
+truncate(path: string, size: number): Promise<void>
+```
 
 ## Example
 

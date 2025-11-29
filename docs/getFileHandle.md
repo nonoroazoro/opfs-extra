@@ -2,14 +2,20 @@
 
 Gets a file handle.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `options` `<FileSystemGetFileOptions>`: _[Optional]_ Options for retrieving the file handle
-
-## Returns
-
-- `<Promise<FileSystemFileHandle>>`
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {FileSystemGetFileOptions} [options] Options for retrieving the file handle.
+ *
+ * @throws
+ */
+getFileHandle(
+  path: string,
+  options?: FileSystemGetFileOptions
+): Promise<FileSystemFileHandle>
+```
 
 ## Example
 

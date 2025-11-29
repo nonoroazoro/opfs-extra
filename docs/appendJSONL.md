@@ -2,10 +2,17 @@
 
 Appends JSON data as JSON Line format to a file, _creates file and parent directories automatically if needed._
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `data` `<unknown>`: Data to append
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {unknown} data Data to write.
+ *
+ * @throws
+ */
+appendJSONL(path: string, data: unknown): Promise<void>
+```
 
 ## Example
 

@@ -2,9 +2,16 @@
 
 Removes a file or directory recursively.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File or directory path relative to the root directory
+```typescript
+/**
+ * @param {string} path File or directory path relative to the root directory.
+ *
+ * @throws
+ */
+remove(path: string): Promise<void>
+```
 
 ## Example
 

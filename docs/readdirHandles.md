@@ -2,13 +2,18 @@
 
 Lists directory contents as handles.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: Directory path relative to the root directory
-
-## Returns
-
-- `<Promise<Array<FileSystemFileHandle | FileSystemDirectoryHandle>>>`
+```typescript
+/**
+ * @param {string} path Directory path relative to the root directory.
+ *
+ * @throws
+ */
+readdirHandles(
+  path: string
+): Promise<Array<FileSystemFileHandle | FileSystemDirectoryHandle>>
+```
 
 ## Example
 

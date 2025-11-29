@@ -2,14 +2,17 @@
 
 Reads a file as a JSON object.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `encoding` `<string>`: _[Optional]_ Text encoding
-
-## Returns
-
-- `<Promise<T>>`: Parsed JSON object
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {string} [encoding] Text encoding.
+ *
+ * @throws
+ */
+readJSON<T extends object>(path: string, encoding?: string): Promise<T>
+```
 
 ## Example
 

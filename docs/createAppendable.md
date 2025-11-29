@@ -2,13 +2,16 @@
 
 Creates a writable stream ready for `high-performance` appending, _creates file and parent directories automatically if needed._
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-
-## Returns
-
-- `<Promise<FileSystemWritableFileStream>>`: Writable stream positioned at end of file
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ *
+ * @throws
+ */
+createAppendable(path: string): Promise<FileSystemWritableFileStream>
+```
 
 ## Example
 

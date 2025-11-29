@@ -2,13 +2,14 @@
 
 Tests whether a file or directory exists at the given path.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File or directory path relative to the root directory
-
-## Returns
-
-- `<Promise<boolean>>`: `true` if the file or directory exists, `false` otherwise
+```typescript
+/**
+ * @param {string} path File or directory path relative to the root directory.
+ */
+exists(path: string): Promise<boolean>
+```
 
 ## Example
 

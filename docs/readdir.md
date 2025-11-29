@@ -2,13 +2,16 @@
 
 Lists directory contents as names.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: Directory path relative to the root directory
-
-## Returns
-
-- `<Promise<string[]>>`: Array of file and directory names
+```typescript
+/**
+ * @param {string} path Directory path relative to the root directory.
+ *
+ * @throws
+ */
+readdir(path: string): Promise<string[]>
+```
 
 ## Example
 

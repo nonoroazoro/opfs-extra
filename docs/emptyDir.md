@@ -2,9 +2,16 @@
 
 Empties a directory by deleting all its contents while keeping the directory itself, _creates directory automatically if needed._
 
-## Parameters
+## Signature
 
-- `path` `<string>`: Directory path relative to the root directory
+```typescript
+/**
+ * @param {string} path Directory path relative to the root directory.
+ *
+ * @throws
+ */
+emptyDir(path: string): Promise<void>
+```
 
 ## Example
 

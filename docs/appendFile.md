@@ -2,10 +2,17 @@
 
 Appends data to a file, _creates file and parent directories automatically if needed._
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `data` `<FileSystemWriteChunkType>`: Data to append
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {FileSystemWriteChunkType} data Data to append.
+ *
+ * @throws
+ */
+appendFile(path: string, data: FileSystemWriteChunkType): Promise<void>
+```
 
 ## Example
 

@@ -2,9 +2,11 @@
 
 Estimates storage usage and quota.
 
-## Returns
+## Signature
 
-- `<Promise<StorageEstimate>>`: Object containing `usage` and `quota` in bytes
+```typescript
+estimate(): Promise<StorageEstimate>
+```
 
 ## Example
 

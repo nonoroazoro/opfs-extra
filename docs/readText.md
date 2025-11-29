@@ -2,14 +2,17 @@
 
 Reads a file as plain text.
 
-## Parameters
+## Signature
 
-- `path` `<string>`: File path relative to the root directory
-- `encoding` `<string>`: _[Optional]_ Text encoding
-
-## Returns
-
-- `<Promise<string>>`
+```typescript
+/**
+ * @param {string} path File path relative to the root directory.
+ * @param {string} [encoding] Text encoding.
+ *
+ * @throws
+ */
+readText(path: string, encoding?: string): Promise<string>
+```
 
 ## Example
 
