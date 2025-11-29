@@ -38,7 +38,6 @@
     ],
     "scripts": {
         "prepare": "husky",
-        "dev": "vite",
         "clean": "rimraf dist test-results coverage",
         "prebuild": "npm run test && npm run clean",
         "build": "npm run build:es && npm run build:lib && npm run build:types",
