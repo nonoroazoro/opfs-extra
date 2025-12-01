@@ -100,18 +100,6 @@ describe("OPFS", () =>
             expect(result).toBe("Hello World");
         });
 
-        it("should create appendable stream", async () =>
-        {
-            await opfs.writeFile("test-file.txt", "Line 1\n");
-
-            const writable = await opfs.createAppendable("test-file.txt");
-            await writable.write("Line 2\n");
-            await writable.close();
-
-            const result = await opfs.readText("test-file.txt");
-            expect(result).toBe("Line 1\nLine 2\n");
-        });
-
         it("should create file when appending to non-existent file", async () =>
         {
             await opfs.appendFile("new-file.txt", "first line\n");
@@ -122,13 +110,35 @@ describe("OPFS", () =>
             await opfs.remove("new-file.txt");
         });
 
-        it("should truncate file", async () =>
+        it("should truncate file to smaller size", async () =>
         {
             await opfs.writeFile("test-file.txt", "Hello World");
             await opfs.truncate("test-file.txt", 5);
 
             const result = await opfs.readText("test-file.txt");
             expect(result).toBe("Hello");
+        });
+
+        it("should truncate file to zero", async () =>
+        {
+            await opfs.writeFile("test-file.txt", "Some content");
+            await opfs.truncate("test-file.txt", 0);
+
+            const result = await opfs.readText("test-file.txt");
+            expect(result).toBe("");
+        });
+
+        it("should truncate non-existent file to create it", async () =>
+        {
+            await opfs.truncate("new-truncated.txt", 10);
+
+            const binary = await opfs.readBinary("new-truncated.txt");
+            const view = new Uint8Array(binary);
+
+            expect(binary.byteLength).toBe(10);
+            expect(view.every(byte => byte === 0)).toBe(true);
+
+            await opfs.remove("new-truncated.txt");
         });
 
         it("should handle JSONL operations", async () =>
@@ -152,6 +162,31 @@ describe("OPFS", () =>
 
             const result = await opfs.readJSONL("test.jsonl");
             expect(result).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }]);
+        });
+
+        it("should handle JSONL with different line endings", async () =>
+        {
+            const text = '{"id":1}\r\n{"id":2}\n{"id":3}\r\n';
+            await opfs.writeFile("test.jsonl", text);
+
+            const result = await opfs.readJSONL("test.jsonl");
+            expect(result).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }]);
+        });
+
+        it("should return empty array for empty JSONL file", async () =>
+        {
+            await opfs.writeFile("test.jsonl", "");
+
+            const result = await opfs.readJSONL("test.jsonl");
+            expect(result).toEqual([]);
+        });
+
+        it("should throw on invalid JSON in JSONL", async () =>
+        {
+            const text = '{"id":1}\n{invalid json}\n{"id":3}\n';
+            await opfs.writeFile("test.jsonl", text);
+
+            await expect(opfs.readJSONL("test.jsonl")).rejects.toThrow();
         });
     });
 
@@ -355,6 +390,64 @@ describe("OPFS", () =>
         {
             await opfs.mkdir("test-dir");
             await expect(opfs.readText("test-dir")).rejects.toThrow();
+        });
+    });
+
+    describe("appendable stream operations", () =>
+    {
+        it("should create appendable for new file", async () =>
+        {
+            const writable = await opfs.createAppendable("new-stream.txt");
+            await writable.write("Line 1\n");
+            await writable.write("Line 2\n");
+            await writable.close();
+
+            const content = await opfs.readText("new-stream.txt");
+            expect(content).toBe("Line 1\nLine 2\n");
+
+            await opfs.remove("new-stream.txt");
+        });
+
+        it("should append to existing file", async () =>
+        {
+            await opfs.writeFile("test-file.txt", "Initial\n");
+
+            const writable = await opfs.createAppendable("test-file.txt");
+            await writable.write("Appended\n");
+            await writable.close();
+
+            const content = await opfs.readText("test-file.txt");
+            expect(content).toBe("Initial\nAppended\n");
+        });
+
+        it("should abort stream and discard writes", async () =>
+        {
+            await opfs.writeFile("test-file.txt", "Original\n");
+
+            const writable = await opfs.createAppendable("test-file.txt");
+            await writable.write("Should be discarded\n");
+            await writable.abort();
+
+            const content = await opfs.readText("test-file.txt");
+            expect(content).toBe("Original\n");
+        });
+
+        it("should write binary data via appendable", async () =>
+        {
+            const buffer1 = new Uint8Array([1, 2, 3]);
+            const buffer2 = new Uint8Array([4, 5, 6]);
+
+            const writable = await opfs.createAppendable("binary.bin");
+            await writable.write(buffer1);
+            await writable.write(buffer2);
+            await writable.close();
+
+            const result = await opfs.readBinary("binary.bin");
+            const view = new Uint8Array(result);
+
+            expect(view).toEqual(new Uint8Array([1, 2, 3, 4, 5, 6]));
+
+            await opfs.remove("binary.bin");
         });
     });
 
