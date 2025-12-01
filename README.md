@@ -53,39 +53,39 @@ await opfs.remove("/data");
 ### Storage
 
 - **root** - Gets the handle to the root directory of the Origin Private File System.
-- **[estimate()](docs/estimate.md)** - Estimates storage usage and quota.
+- **[estimate](docs/estimate.md)** - Estimates storage usage and quota.
 
 ### Handles
 
-- **[getFileHandle(path, options?)](docs/getFileHandle.md)** - Gets a handle to a file.
-- **[getDirectoryHandle(path, options?)](docs/getDirectoryHandle.md)** - Gets a handle to a directory.
+- **[getFileHandle](docs/getFileHandle.md)** - Gets a handle to a file.
+- **[getDirectoryHandle](docs/getDirectoryHandle.md)** - Gets a handle to a directory.
 
 ### File Reading
 
-- **[readBinary(path)](docs/readBinary.md)** - Reads a file as an ArrayBuffer.
-- **[readText(path, encoding?)](docs/readText.md)** - Reads a file as plain text.
-- **[readJSON(path, encoding?)](docs/readJSON.md)** - Reads a file as a JSON Object.
-- **[readJSONL(path, encoding?)](docs/readJSONL.md)** - Reads a JSONL file as a JSON Array.
+- **[readBinary](docs/readBinary.md)** - Reads a file as an ArrayBuffer.
+- **[readText](docs/readText.md)** - Reads a file as plain text.
+- **[readJSON](docs/readJSON.md)** - Reads a file as a JSON Object.
+- **[readJSONL](docs/readJSONL.md)** - Reads a JSONL file as a JSON Array.
 
 ### File Writing
 
-_Methods will create file and parent directories automatically if needed._
+> _These methods will create file and parent directories automatically if needed._
 
-- **[writeFile(path, data, options?)](docs/writeFile.md)** - Writes data to a file.
-- **[writeJSON(path, data, options?)](docs/writeJSON.md)** - Writes JSON data to a file.
-- **[appendFile(path, data)](docs/appendFile.md)** - Appends data to a file.
-- **[appendJSONL(path, data)](docs/appendJSONL.md)** - Appends JSON data to a JSONL file.
-- **[createAppendable(path)](docs/createAppendable.md)** - Creates a writable stream ready for high-performance appending.
-- **[truncate(path, size)](docs/truncate.md)** - Truncates a file to a specified size.
+- **[writeFile](docs/writeFile.md)** - Writes data to a file.
+- **[writeJSON](docs/writeJSON.md)** - Writes JSON data to a file.
+- **[appendFile](docs/appendFile.md)** - Appends data to a file.
+- **[appendJSONL](docs/appendJSONL.md)** - Appends JSON data to a JSONL file.
+- **[createAppendable](docs/createAppendable.md)** - Creates a writable stream ready for high-performance appending.
+- **[truncate](docs/truncate.md)** - Truncates a file to a specified size.
 
 ### Directory
 
-- **[mkdir(path)](docs/mkdir.md)** - Creates a directory _(creates directories if needed)._
-- **[emptyDir(path)](docs/emptyDir.md)** - Empties a directory _(creates directories if needed)._
-- **[readdir(path)](docs/readdir.md)** - Reads the directory contents as names.
-- **[readdirHandles(path)](docs/readdirHandles.md)** - Reads the directory contents as handles.
+- **[mkdir](docs/mkdir.md)** - Creates a directory _(creates directories if needed)._
+- **[emptyDir](docs/emptyDir.md)** - Empties a directory _(creates directories if needed)._
+- **[readdir](docs/readdir.md)** - Reads the directory contents as names.
+- **[readdirHandles](docs/readdirHandles.md)** - Reads the directory contents as handles.
 
 ### Path
 
-- **[exists(path)](docs/exists.md)** - Tests whether a file or directory exists.
-- **[remove(path)](docs/remove.md)** - Removes a file or directory recursively.
+- **[exists](docs/exists.md)** - Tests whether a file or directory exists.
+- **[remove](docs/remove.md)** - Removes a file or directory recursively.
