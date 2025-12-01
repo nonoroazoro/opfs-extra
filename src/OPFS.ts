@@ -49,7 +49,7 @@ export class OPFS
     }
 
     /**
-     * Gets a file handle.
+     * Gets a handle to a file.
      *
      * @param {string} path File path relative to the root directory.
      * @param {FileSystemGetFileOptions} [options] Options for retrieving the file handle.
@@ -68,7 +68,7 @@ export class OPFS
     }
 
     /**
-     * Gets a directory handle.
+     * Gets a handle to a directory.
      *
      * @param {string} path Directory path relative to the root directory.
      * @param {FileSystemGetDirectoryOptions} [options] Options for retrieving the directory handle.
@@ -145,6 +145,7 @@ export class OPFS
     /**
      * Reads a file as a JSON object.
      *
+     * @template T Type of the JSON object.
      * @param {string} path File path relative to the root directory.
      * @param {string} [encoding] Text encoding.
      *
@@ -157,8 +158,9 @@ export class OPFS
     }
 
     /**
-     * Reads a file as JSON lines.
+     * Reads a JSONL file as a JSON Array.
      *
+     * @template T Type of the JSON object.
      * @param {string} path File path relative to the root directory.
      * @param {string} [encoding] Text encoding.
      *
@@ -244,7 +246,7 @@ export class OPFS
     }
 
     /**
-     * Appends JSON data as JSONL format to a file.
+     * Appends JSON data to a JSONL file.
      *
      * @param {string} path File path relative to the root directory.
      * @param {unknown} data Data to write.
@@ -319,7 +321,7 @@ export class OPFS
     }
 
     /**
-     * Lists directory contents as names.
+     * Reads the directory contents as names.
      *
      * @param {string} path Directory path relative to the root directory.
      *
@@ -337,7 +339,7 @@ export class OPFS
     }
 
     /**
-     * Lists directory contents as handles.
+     * Reads the directory contents as handles.
      *
      * @param {string} path Directory path relative to the root directory.
      *

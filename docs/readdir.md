@@ -1,6 +1,6 @@
 # readdir(path)
 
-Lists directory contents as names.
+Reads the directory contents as names.
 
 ## Signature
 

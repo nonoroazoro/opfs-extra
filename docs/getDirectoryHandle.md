@@ -1,6 +1,6 @@
-# getDirectoryHandle(path[, options])
+# getDirectoryHandle(path, options?)
 
-Gets a directory handle.
+Gets a handle to a directory.
 
 ## Signature
 
@@ -11,10 +11,7 @@ Gets a directory handle.
  *
  * @throws
  */
-getDirectoryHandle(
-  path: string,
-  options?: FileSystemGetDirectoryOptions
-): Promise<FileSystemDirectoryHandle>
+getDirectoryHandle(path: string, options?: FileSystemGetDirectoryOptions): Promise<FileSystemDirectoryHandle>
 ```
 
 ## Example

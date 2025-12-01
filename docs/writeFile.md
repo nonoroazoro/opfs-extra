@@ -1,4 +1,4 @@
-# writeFile(path, data[, options])
+# writeFile(path, data, options?)
 
 Writes data to a file, _creates file and parent directories automatically if needed._
 
@@ -12,11 +12,7 @@ Writes data to a file, _creates file and parent directories automatically if nee
  *
  * @throws
  */
-writeFile(
-  path: string,
-  data: FileSystemWriteChunkType,
-  options?: FileSystemCreateWritableOptions
-): Promise<void>
+writeFile(path: string, data: FileSystemWriteChunkType, options?: FileSystemCreateWritableOptions): Promise<void>
 ```
 
 ## Example

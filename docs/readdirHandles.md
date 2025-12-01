@@ -1,6 +1,6 @@
 # readdirHandles(path)
 
-Lists directory contents as handles.
+Reads the directory contents as handles.
 
 ## Signature
 
@@ -10,9 +10,7 @@ Lists directory contents as handles.
  *
  * @throws
  */
-readdirHandles(
-  path: string
-): Promise<Array<FileSystemFileHandle | FileSystemDirectoryHandle>>
+readdirHandles(path: string): Promise<Array<FileSystemFileHandle | FileSystemDirectoryHandle>>
 ```
 
 ## Example

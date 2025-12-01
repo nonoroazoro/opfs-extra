@@ -1,6 +1,6 @@
 # appendJSONL(path, data)
 
-Appends JSON data as JSON Line format to a file, _creates file and parent directories automatically if needed._
+Appends JSON data to a JSONL file, _creates file and parent directories automatically if needed._
 
 ## Signature
 

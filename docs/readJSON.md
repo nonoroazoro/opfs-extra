@@ -1,4 +1,4 @@
-# readJSON(path[, encoding])
+# readJSON(path, encoding?)
 
 Reads a file as a JSON object.
 

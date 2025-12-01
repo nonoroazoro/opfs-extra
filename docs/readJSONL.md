@@ -1,6 +1,6 @@
-# readJSONL(path[, encoding])
+# readJSONL(path, encoding?)
 
-Reads a file as JSON lines (JSONL format).
+Reads a JSONL file as a JSON Array.
 
 ## Signature
 

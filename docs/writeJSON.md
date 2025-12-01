@@ -1,4 +1,4 @@
-# writeJSON(path, data[, options])
+# writeJSON(path, data, options?)
 
 Writes JSON data to a file, _creates file and parent directories automatically if needed._
 
@@ -12,11 +12,7 @@ Writes JSON data to a file, _creates file and parent directories automatically i
  *
  * @throws
  */
-writeJSON(
-  path: string,
-  data: unknown,
-  options?: { pretty?: boolean } & FileSystemCreateWritableOptions
-): Promise<void>
+writeJSON(path: string, data: unknown, options?: { pretty?: boolean } & FileSystemCreateWritableOptions): Promise<void>
 ```
 
 ## Example

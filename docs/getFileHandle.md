@@ -1,6 +1,6 @@
-# getFileHandle(path[, options])
+# getFileHandle(path, options?)
 
-Gets a file handle.
+Gets a handle to a file.
 
 ## Signature
 
@@ -11,10 +11,7 @@ Gets a file handle.
  *
  * @throws
  */
-getFileHandle(
-  path: string,
-  options?: FileSystemGetFileOptions
-): Promise<FileSystemFileHandle>
+getFileHandle(path: string, options?: FileSystemGetFileOptions): Promise<FileSystemFileHandle>
 ```
 
 ## Example

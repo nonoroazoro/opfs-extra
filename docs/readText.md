@@ -1,4 +1,4 @@
-# readText(path[, encoding])
+# readText(path, encoding?)
 
 Reads a file as plain text.
 
