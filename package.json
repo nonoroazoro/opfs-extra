@@ -1,6 +1,7 @@
 {
     "name": "opfs-extra",
     "version": "1.0.2",
+    "packageManager": "pnpm@10.28.1",
     "description": "opfs-extra brings the user-friendly API to OPFS, just like fs-extra.",
     "license": "MIT",
     "main": "./dist/lib/index.js",
