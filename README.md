@@ -1,6 +1,9 @@
 <h1 align="center">opfs-extra</h1>
 <p align="center"><b>opfs-extra</b> brings the user-friendly API to <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system">OPFS</a>, just like <a href="https://github.com/jprichardson/node-fs-extra">fs-extra</a></p>
 <p align="center">
+    <a href="https://github.com/nonoroazoro/opfs-extra/actions/workflows/ci.yml">
+        <img src="https://github.com/nonoroazoro/opfs-extra/actions/workflows/ci.yml/badge.svg" alt="GitHub CI" />
+    </a>
     <a href="https://github.com/nonoroazoro/opfs-extra/blob/master/LICENSE">
         <img src="https://img.shields.io/npm/l/opfs-extra" alt="NPM License" />
     </a>
