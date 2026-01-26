@@ -1,15 +1,29 @@
-# Changelogs
+# Changelog
 
-## 1.0.2 - December 01, 2025
+## [1.0.2] - 2025-12-01
 
-- Improve API documentation
-- Add tests for truncate, appendable and JSONL
-- Remove unused files and configs
+### Added
 
-## 1.0.1 - November 29, 2025
+- Tests for `truncate`, `appendable`, and JSONL operations
 
-- Remove unnecessary files to reduce package size
+### Changed
 
-## 1.0.0 - November 29, 2025
+- Improved API documentation consistency and clarity
 
-- First release
+### Removed
+
+- Unused `@types/node` dependency
+- Test-results related configs
+
+## [1.0.1] - 2025-11-29
+
+### Changed
+
+- Optimized package.json for npm publish
+- Removed unnecessary files to reduce package size
+
+## [1.0.0] - 2025-11-29
+
+### Changed
+
+- Initial release
