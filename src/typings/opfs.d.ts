@@ -11,7 +11,7 @@ interface FileSystemDirectoryHandle
      *   console.log(name, handle.kind);
      * }
      */
-    entries(): AsyncIterableIterator<[string, FileSystemFileHandle | FileSystemDirectoryHandle]>;
+    entries(): AsyncIterableIterator<[string, FileSystemDirectoryHandle | FileSystemFileHandle]>;
 
     /**
      * Returns an async iterator of entry names in the directory.
@@ -31,7 +31,7 @@ interface FileSystemDirectoryHandle
      *   console.log(handle.kind, handle.name);
      * }
      */
-    values(): AsyncIterableIterator<FileSystemFileHandle | FileSystemDirectoryHandle>;
+    values(): AsyncIterableIterator<FileSystemDirectoryHandle | FileSystemFileHandle>;
 
     /**
      * Makes the directory handle iterable, same as calling entries().
@@ -41,5 +41,5 @@ interface FileSystemDirectoryHandle
      *   console.log(name, handle.kind);
      * }
      */
-    [Symbol.asyncIterator](): AsyncIterableIterator<[string, FileSystemFileHandle | FileSystemDirectoryHandle]>;
+    [Symbol.asyncIterator](): AsyncIterableIterator<[string, FileSystemDirectoryHandle | FileSystemFileHandle]>;
 }

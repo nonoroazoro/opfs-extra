@@ -1,7 +1,7 @@
 {
     "name": "opfs-extra",
     "version": "1.0.2",
-    "packageManager": "pnpm@10.28.1",
+    "packageManager": "pnpm@10.28.2",
     "description": "opfs-extra brings the user-friendly API to OPFS, just like fs-extra.",
     "license": "MIT",
     "main": "./dist/lib/index.js",
@@ -39,15 +39,16 @@
     ],
     "scripts": {
         "prepare": "husky",
-        "clean": "rimraf dist coverage",
-        "prebuild": "npm run test && npm run clean",
+        "prebuild": "npm run lint && npm run test && rimraf dist coverage",
         "build": "npm run build:es && npm run build:lib && npm run build:types",
         "build:es": "tsc --project ./tsconfig.es.json",
         "build:lib": "tsc --project ./tsconfig.lib.json",
         "build:types": "tsc --project ./tsconfig.types.json",
         "test": "vitest run",
         "test:watch": "vitest",
-        "test:cov": "vitest run --coverage"
+        "test:cov": "vitest run --coverage",
+        "lint": "eslint src/**",
+        "upgradepackages": "ncu -u"
     },
     "lint-staged": {
         "{src,tests}/**/*.ts": [
@@ -56,19 +57,20 @@
         ]
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^8.48.0",
-        "@typescript-eslint/parser": "^8.48.0",
-        "@vitest/browser-playwright": "^4.0.14",
-        "@vitest/coverage-v8": "^4.0.14",
-        "dprint": "^0.50.2",
-        "eslint": "^9.39.1",
-        "eslint-config-zoro": "^7.1.16",
+        "@typescript-eslint/eslint-plugin": "^8.54.0",
+        "@typescript-eslint/parser": "^8.54.0",
+        "@vitest/browser-playwright": "^4.0.18",
+        "@vitest/coverage-v8": "^4.0.18",
+        "dprint": "^0.51.1",
+        "eslint": "^9.39.2",
+        "eslint-config-zoro": "^9.0.7",
         "husky": "^9.1.7",
         "lint-staged": "^16.2.7",
+        "npm-check-updates": "^19.3.2",
         "rimraf": "^6.1.2",
         "ts-loader": "^9.5.4",
         "typescript": "^5.9.3",
-        "vitest": "^4.0.14"
+        "vitest": "^4.0.18"
     },
     "files": [
         "dist"

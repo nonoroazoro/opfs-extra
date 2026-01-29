@@ -345,10 +345,10 @@ export class OPFS
      *
      * @throws
      */
-    async readdirHandles(path: string): Promise<Array<FileSystemFileHandle | FileSystemDirectoryHandle>>
+    async readdirHandles(path: string): Promise<Array<FileSystemDirectoryHandle | FileSystemFileHandle>>
     {
         const handle = await this.getDirectoryHandle(path);
-        const handles: Array<FileSystemFileHandle | FileSystemDirectoryHandle> = [];
+        const handles: Array<FileSystemDirectoryHandle | FileSystemFileHandle> = [];
         for await (const h of handle.values())
         {
             handles.push(h);
