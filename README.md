@@ -12,6 +12,10 @@
     </a>
 </p>
 
+## Playground
+
+Try it online: **[opfs-extra Playground](https://nonoroazoro.github.io/opfs-extra/)**.
+
 ## Installation
 
 ```bash
