@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>opfs-extra Playground</title>
+        <script src="https://unpkg.com/lucide@0.460.0"></script>
+    </head>
+    <body class="preload bg-slate-950 text-gray-100 min-h-screen bg-grid">
+        <div class="max-w-7xl mx-auto p-4 h-screen flex flex-col">
+            <!-- Header -->
+            <header class="flex items-center justify-center gap-3 py-2">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="database" class="w-5 h-5 text-neon-cyan"></i>
+                    <span class="font-bold text-neon-cyan text-glow tracking-wide">opfs-extra Playground</span>
+                </div>
+                <span class="text-slate-600">|</span>
+                <a
+                    href="https://github.com/nonoroazoro/opfs-extra"
+                    target="_blank"
+                    class="flex items-center gap-1 text-slate-400 hover:text-neon-cyan transition-colors"
+                >
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    <span>GitHub</span>
+                </a>
+            </header>
+
+            <!-- Main Content: -->
+            <main class="flex-1 grid grid-cols-1 lg:grid-cols-[220px_1fr_280px] gap-4 min-h-0">
+                <!-- Left: Examples -->
+                <div class="panel-bg rounded-lg border glow-border overflow-hidden flex flex-col min-h-0">
+                    <div class="px-4 py-2 border-b border-slate-700/50 bg-slate-900/50">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-4 h-4 text-amber-400"></i>
+                            <span class="text-sm font-semibold text-amber-400">Examples</span>
+                        </div>
+                    </div>
+                    <div id="examples-list" class="flex-1 overflow-auto"></div>
+                </div>
+
+                <!-- Center: Editor -->
+                <div class="panel-bg rounded-lg border glow-border glow-cyan flex flex-col min-h-0 z-10">
+                    <div class="flex items-center justify-between px-4 py-2 border-b border-slate-700/50 bg-slate-900/50">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="code-2" class="w-4 h-4 text-neon-cyan"></i>
+                            <span class="text-sm font-semibold text-neon-cyan">Editor</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <label class="flex items-center gap-1.5 text-xs text-slate-400 cursor-pointer select-none">
+                                <input
+                                    type="checkbox"
+                                    id="clear-before-run"
+                                    class="w-3.5 h-3.5 rounded border-slate-600 bg-slate-800 text-cyan-500 focus:ring-cyan-500 focus:ring-offset-0 cursor-pointer"
+                                >
+                                Clear before run
+                            </label>
+                            <button
+                                id="run-btn"
+                                class="cursor-pointer flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-neon-cyan to-cyan-400 hover:from-cyan-400 hover:to-neon-cyan text-slate-900 text-sm font-bold rounded transition-all shadow-lg shadow-cyan-500/20"
+                            >
+                                <i data-lucide="play" class="w-3 h-3"></i>
+                                Run
+                            </button>
+                        </div>
+                    </div>
+                    <div id="editor-container" class="flex-1 min-h-0"></div>
+                    <div class="px-3 py-1.5 border-t border-slate-700/50 bg-slate-900/50 text-xs text-slate-500 flex items-center justify-end">
+                        <kbd id="modifier-key" class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-400 font-mono"
+                        >⌘</kbd>
+                        <span class="mx-0.5">+</span>
+                        <kbd class="px-1.5 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">Enter</kbd>
+                        <span class="ml-1.5">to run</span>
+                    </div>
+                </div>
+
+                <!-- Right: Output & Files -->
+                <div class="flex flex-col gap-4 min-h-0">
+                    <!-- Output -->
+                    <div class="flex-1 panel-bg rounded-lg overflow-hidden border glow-border flex flex-col min-h-0">
+                        <div class="flex items-center justify-between px-4 py-2 border-b border-slate-700/50 bg-slate-900/50">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i>
+                                <span class="text-sm font-semibold text-emerald-400">Output</span>
+                            </div>
+                            <button
+                                id="clear-btn"
+                                class="cursor-pointer flex items-center gap-1 px-3 py-1 text-xs text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded transition-colors border border-slate-700"
+                            >
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                Clear
+                            </button>
+                        </div>
+                        <pre
+                            id="output"
+                            class="flex-1 p-3 overflow-auto font-mono text-sm bg-slate-950/50 whitespace-pre-wrap break-words"
+                        ></pre>
+                    </div>
+
+                    <!-- Files -->
+                    <div class="flex-1 panel-bg rounded-lg border glow-border overflow-hidden flex flex-col min-h-0">
+                        <div class="flex items-center justify-between px-4 py-2 border-b border-slate-700/50 bg-slate-900/50">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="folder-tree" class="w-4 h-4 text-violet-400"></i>
+                                <span class="text-sm font-semibold text-violet-400">Files</span>
+                            </div>
+                            <button
+                                id="clear-files-btn"
+                                class="cursor-pointer flex items-center gap-1 px-3 py-1 text-xs text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded transition-colors border border-slate-700"
+                            >
+                                <i data-lucide="trash-2" class="w-3 h-3"></i>
+                                Clear
+                            </button>
+                        </div>
+                        <div id="file-tree" class="flex-1 p-2 overflow-auto font-mono text-sm"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script type="module" src="./main.ts"></script>
+        <script>
+        lucide.createIcons();
+        </script>
+    </body>
+</html>

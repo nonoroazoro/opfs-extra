@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@theme
+{
+    --color-neon-cyan: #00f5ff;
+    --color-neon-purple: #bf00ff;
+    --color-neon-blue: #0066ff;
+}
+
+.preload *
+{
+    transition: none !important;
+}
+
+.glow-cyan
+{
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.3), inset 0 0 20px rgba(0, 245, 255, 0.05);
+}
+
+.glow-border
+{
+    border-color: rgba(0, 245, 255, 0.3);
+}
+
+.text-glow
+{
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+
+.bg-grid
+{
+    background-image: linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.panel-bg
+{
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+    backdrop-filter: blur(10px);
+}

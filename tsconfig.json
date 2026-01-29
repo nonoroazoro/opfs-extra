@@ -16,12 +16,7 @@
         "sourceMap": false,
         "strictNullChecks": true,
         "verbatimModuleSyntax": true,
-        "lib": [
-            "DOM",
-            "ESNext"
-        ]
+        "lib": ["DOM", "ESNext"]
     },
-    "include": [
-        "src"
-    ]
+    "include": ["src"]
 }

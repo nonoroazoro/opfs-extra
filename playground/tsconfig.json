@@ -1,0 +1,7 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "."
+    },
+    "include": ["main.ts", "vite-env.d.ts"]
+}
