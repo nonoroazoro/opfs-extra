@@ -32,6 +32,8 @@ jobs:
       - working-directory: playground
         run: pnpm build
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: playground/dist
