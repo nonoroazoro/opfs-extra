@@ -852,11 +852,11 @@ describe("OPFS", () =>
             {
                 id: number;
                 metadata: {
-                    tags: string[];
                     config: {
                         enabled: boolean;
                         timeout: number;
                     };
+                    tags: string[];
                 };
             }
 
@@ -920,9 +920,9 @@ describe("OPFS", () =>
             username: string;
             email: string;
             profile: {
+                age: number;
                 firstName: string;
                 lastName: string;
-                age: number;
             };
             roles: string[];
             isActive: boolean;
