@@ -702,7 +702,12 @@ async function initMonaco(): Promise<void>
         base: "vs-dark",
         inherit: true,
         rules: [],
-        colors: { "editor.background": "#1f2937" }
+        colors: {
+            "editor.background": "#1f2937",
+            "scrollbarSlider.background": "#00f5ff50",
+            "scrollbarSlider.hoverBackground": "#00f5ff80",
+            "scrollbarSlider.activeBackground": "#00f5ff99"
+        }
     });
 
     editor = monaco.editor.create($("editor-container"), {
@@ -715,7 +720,11 @@ async function initMonaco(): Promise<void>
         scrollBeyondLastLine: false,
         automaticLayout: true,
         tabSize: 4,
-        padding: { top: 12, bottom: 12 }
+        padding: { top: 12, bottom: 12 },
+        scrollbar: {
+            verticalScrollbarSize: 8,
+            horizontalScrollbarSize: 8
+        }
     });
 
     // Cmd/Ctrl + Enter to run
@@ -770,7 +779,9 @@ main().catch(e =>
                 </p>
                 <div style="width: 100%; text-align: left; background: #1e293b; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; border: 1px solid #334155;">
                     <div style="color: #94a3b8; font-size: 0.75rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Error</div>
-                    <pre style="color: #f87171; font-size: 0.8rem; overflow-x: auto; white-space: pre-wrap; word-break: break-all; margin: 0;">${String(e)}</pre>
+                    <pre style="color: #f87171; font-size: 0.8rem; overflow-x: auto; white-space: pre-wrap; word-break: break-all; margin: 0;">${
+                        String(e)
+                    }</pre>
                 </div>
                 <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
                     <button onclick="location.reload()" style="background: #3b82f6; color: white; border: none; padding: 0.625rem 1.25rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem; font-weight: 500;">
