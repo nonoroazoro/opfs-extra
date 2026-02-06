@@ -292,6 +292,32 @@ describe("OPFS", () =>
             const exists = await opfs.exists("test-dir");
             expect(exists).toBe(true);
         });
+
+        it("should resolve .. segments", async () =>
+        {
+            await opfs.mkdir("test-dir/nested");
+            await opfs.writeFile("test-dir/nested/../hello.txt", "hello");
+
+            const exists = await opfs.exists("test-dir/hello.txt");
+            expect(exists).toBe(true);
+
+            const text = await opfs.readText("test-dir/nested/../hello.txt");
+            expect(text).toBe("hello");
+        });
+
+        it("should clamp .. at root", async () =>
+        {
+            await opfs.writeFile("test-file.txt", "root file");
+
+            const text = await opfs.readText("../../test-file.txt");
+            expect(text).toBe("root file");
+        });
+
+        it("should resolve .. to root", async () =>
+        {
+            const handle = await opfs.getDirectoryHandle("..");
+            expect(handle).toBe(opfs.root);
+        });
     });
 
     describe("exists checks", () =>
@@ -722,32 +748,32 @@ describe("OPFS", () =>
 
     describe("text encoding", () =>
     {
-        it("should read text with explicit UTF-8 encoding", async () =>
+        it("should read text with UTF-8 content", async () =>
         {
             const text = "Hello 世界 🌍";
             await opfs.writeFile("test-file.txt", text);
 
-            const result = await opfs.readText("test-file.txt", "utf-8");
+            const result = await opfs.readText("test-file.txt");
             expect(result).toBe(text);
         });
 
-        it("should read JSON with encoding parameter", async () =>
+        it("should read JSON with UTF-8 content", async () =>
         {
             const data = { message: "Hello 世界" };
             await opfs.writeJSON("test.json", data);
 
-            const result = await opfs.readJSON("test.json", "utf-8");
+            const result = await opfs.readJSON("test.json");
             expect(result).toEqual(data);
         });
 
-        it("should read JSONL with encoding parameter", async () =>
+        it("should read JSONL with UTF-8 content", async () =>
         {
             const data1 = { text: "Hello 世界" };
             const data2 = { text: "Bonjour 🇫🇷" };
             await opfs.appendJSONL("test.jsonl", data1);
             await opfs.appendJSONL("test.jsonl", data2);
 
-            const result = await opfs.readJSONL("test.jsonl", "utf-8");
+            const result = await opfs.readJSONL("test.jsonl");
             expect(result).toEqual([data1, data2]);
         });
     });

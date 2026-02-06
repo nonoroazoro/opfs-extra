@@ -132,14 +132,14 @@ export class OPFS
      * Reads a file as plain text.
      *
      * @param {string} path File path relative to the root directory.
-     * @param {string} [encoding] Text encoding.
      *
      * @throws
      */
-    async readText(path: string, encoding?: string): Promise<string>
+    async readText(path: string): Promise<string>
     {
-        const binary = await this.readBinary(path);
-        return new TextDecoder(encoding).decode(binary);
+        const handle = await this.getFileHandle(path);
+        const file = await handle.getFile();
+        return file.text();
     }
 
     /**
@@ -147,13 +147,12 @@ export class OPFS
      *
      * @template T Type of the JSON object.
      * @param {string} path File path relative to the root directory.
-     * @param {string} [encoding] Text encoding.
      *
      * @throws
      */
-    async readJSON<T extends object>(path: string, encoding?: string): Promise<T>
+    async readJSON<T extends object>(path: string): Promise<T>
     {
-        const text = await this.readText(path, encoding);
+        const text = await this.readText(path);
         return JSON.parse(text) as T;
     }
 
@@ -162,13 +161,12 @@ export class OPFS
      *
      * @template T Type of the JSON object.
      * @param {string} path File path relative to the root directory.
-     * @param {string} [encoding] Text encoding.
      *
      * @throws
      */
-    async readJSONL<T extends object>(path: string, encoding?: string): Promise<T[]>
+    async readJSONL<T extends object>(path: string): Promise<T[]>
     {
-        const text = await this.readText(path, encoding);
+        const text = await this.readText(path);
         return text.trim().split(EOL_REGEX).reduce<T[]>((acc, line) =>
         {
             const trimmed = line.trim();
@@ -202,15 +200,12 @@ export class OPFS
         try
         {
             await writable.write(data);
+            await writable.close();
         }
         catch (error)
         {
             await writable.abort();
             throw error;
-        }
-        finally
-        {
-            await writable.close();
         }
     }
 
@@ -233,15 +228,12 @@ export class OPFS
             const position = (await handle.getFile()).size;
             await writable.seek(position);
             await writable.write(data);
+            await writable.close();
         }
         catch (error)
         {
             await writable.abort();
             throw error;
-        }
-        finally
-        {
-            await writable.close();
         }
     }
 
@@ -294,15 +286,12 @@ export class OPFS
         try
         {
             await writable.truncate(size);
+            await writable.close();
         }
         catch (error)
         {
             await writable.abort();
             throw error;
-        }
-        finally
-        {
-            await writable.close();
         }
     }
 
@@ -330,12 +319,7 @@ export class OPFS
     async readdir(path: string): Promise<string[]>
     {
         const handle = await this.getDirectoryHandle(path);
-        const names: string[] = [];
-        for await (const n of handle.keys())
-        {
-            names.push(n);
-        }
-        return names;
+        return Array.fromAsync(handle.keys());
     }
 
     /**
@@ -348,12 +332,7 @@ export class OPFS
     async readdirHandles(path: string): Promise<Array<FileSystemDirectoryHandle | FileSystemFileHandle>>
     {
         const handle = await this.getDirectoryHandle(path);
-        const handles: Array<FileSystemDirectoryHandle | FileSystemFileHandle> = [];
-        for await (const h of handle.values())
-        {
-            handles.push(h);
-        }
-        return handles;
+        return Array.fromAsync(handle.values());
     }
 
     /**
@@ -363,22 +342,29 @@ export class OPFS
      */
     async exists(path: string): Promise<boolean>
     {
-        try
+        const segments = this._pathToSegments(path);
+        if (segments.length === 0)
         {
-            await this.getFileHandle(path);
             return true;
         }
-        catch
+        try
         {
+            const parent = await this._getLastDirectoryHandle(segments);
+            const name = segments[segments.length - 1];
             try
             {
-                await this.getDirectoryHandle(path);
+                await parent.getFileHandle(name);
                 return true;
             }
             catch
             {
-                return false;
+                await parent.getDirectoryHandle(name);
+                return true;
             }
+        }
+        catch
+        {
+            return false;
         }
     }
 
@@ -449,17 +435,37 @@ export class OPFS
      * Converts a path into segments.
      *
      * Note: Path is always relative to the root directory.
+     * The `..` segments are resolved, and the path is clamped to the root directory.
      *
      * Examples:
      * - "/foo/bar/baz.txt" -> ["foo", "bar", "baz.txt"] -> root/foo/bar/baz.txt
      * - "/foo/bar/" -> ["foo", "bar"] -> root/foo/bar/
      * - "/foo/bar" -> ["foo", "bar"] -> root/foo/bar
+     * - "foo/bar/../../baz" -> ["baz"] -> root/baz
+     * - "../../foo" -> ["foo"] -> root/foo
      * - "/" -> [] -> root
      * - "." -> [] -> root
      * - "./" -> [] -> root
+     * - ".." -> [] -> root
      */
     private _pathToSegments(path: string): string[]
     {
-        return path.trim().split("/").filter(segment => segment !== "." && segment.trim() !== "");
+        const parts = path.split("/").filter(s => s !== "." && s !== "");
+        const segments: string[] = [];
+        for (const part of parts)
+        {
+            if (part === "..")
+            {
+                if (segments.length > 0)
+                {
+                    segments.pop();
+                }
+            }
+            else
+            {
+                segments.push(part);
+            }
+        }
+        return segments;
     }
 }
