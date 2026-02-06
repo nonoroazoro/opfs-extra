@@ -1,4 +1,4 @@
-# readText(path, encoding?)
+# readText(path)
 
 Reads a file as plain text.
 
@@ -7,11 +7,10 @@ Reads a file as plain text.
 ```typescript
 /**
  * @param {string} path File path relative to the root directory.
- * @param {string} [encoding] Text encoding.
  *
  * @throws
  */
-readText(path: string, encoding?: string): Promise<string>
+readText(path: string): Promise<string>
 ```
 
 ## Example

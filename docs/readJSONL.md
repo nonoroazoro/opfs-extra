@@ -1,4 +1,4 @@
-# readJSONL(path, encoding?)
+# readJSONL(path)
 
 Reads a JSONL file as a JSON Array.
 
@@ -7,11 +7,10 @@ Reads a JSONL file as a JSON Array.
 ```typescript
 /**
  * @param {string} path File path relative to the root directory.
- * @param {string} [encoding] Text encoding.
  *
  * @throws
  */
-readJSONL<T extends object>(path: string, encoding?: string): Promise<T[]>
+readJSONL<T extends object>(path: string): Promise<T[]>
 ```
 
 ## Example

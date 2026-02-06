@@ -1,4 +1,4 @@
-# readJSON(path, encoding?)
+# readJSON(path)
 
 Reads a file as a JSON object.
 
@@ -7,11 +7,10 @@ Reads a file as a JSON object.
 ```typescript
 /**
  * @param {string} path File path relative to the root directory.
- * @param {string} [encoding] Text encoding.
  *
  * @throws
  */
-readJSON<T extends object>(path: string, encoding?: string): Promise<T>
+readJSON<T extends object>(path: string): Promise<T>
 ```
 
 ## Example
